@@ -7,6 +7,7 @@
 <meta name="keywords" content="Jianping Shi, Shi Jianping, Ê¯½¨Æ¼, CSE, CUHK, The Chinese University of Hong Kong"> 
 <meta name="description" content="Jianping Shi's home page">
 <link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
 <title>Jianping Shi</title>
 <script type="text/javascript">
 
@@ -71,10 +72,10 @@
 		Listed as <a href="https://www.forbeschina.com/lists/1785">福布斯中国科技女性50</a> in 2022.
 	</li>
 	<li>
-		I won the <a href="images/award2021.jpg">商汤奖</a> in 2021, which is the highest personal award in SenseTime with 100k RMB prize.
+		I won the <a href="images/award2021.jpg" data-fancybox="awards" data-caption="商汤奖 2021">商汤奖</a> in 2021, which is the highest personal award in SenseTime with 100k RMB prize.
 	</li>
 	<li>
-		I led team and won twice the 商汤团队奖 in <a href="images/award2022.jpg">2022</a> and <a href="images/award2018.jpg">2018</a> respectively, which is the highest team award in SenseTime with a million RMB prize.
+		I led team and won twice the 商汤团队奖 in <a href="images/award2022.jpg" data-fancybox="awards" data-caption="商汤团队奖 2022">2022</a> and <a href="images/award2018.jpg" data-fancybox="awards" data-caption="商汤团队奖 2018">2018</a> respectively, which is the highest team award in SenseTime with a million RMB prize.
 	</li>
 	<li>
 		Searve as Area Chair for CVPR 2020, ICCV 2019, etc.
@@ -222,12 +223,35 @@ For the full publication, please refer to my <a href="https://scholar.google.com
 <h2>Miscs</h2>
 <ul>
 	<li>
-		I have attended two psychology courses <a href="images/jdxl-course.jpg">简单心理Seed</a> and finished a part-time hotline period <a href="images/jdxl-hotline.jpg">简单心理热线实习</a>. 
+		I have attended two psychology courses <a href="images/jdxl-course.jpg" data-fancybox="psychology" data-caption="简单心理Seed课程">简单心理Seed</a> and finished a part-time hotline period <a href="images/jdxl-hotline.jpg" data-fancybox="psychology" data-caption="简单心理热线实习">简单心理热线实习</a>. 
 	</li>
 </ul>
 <div id="footer">
 	<div id="footer-text"></div>
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script>
+  Fancybox.bind("[data-fancybox]", {
+    // 自定义选项
+    loop: true,
+    buttons: [
+      "zoom",
+      "slideShow",
+      "fullScreen",
+      "close"
+    ],
+    animationEffect: "fade",
+    transitionEffect: "fade",
+    dragToClose: false,
+    autoFocus: false,
+    placeFocusBack: false,
+    on: {
+      ready: (fancybox) => {
+        console.log(`Fancybox ${fancybox.id} is ready!`);
+      }
+    }
+  });
+</script>
 </body>
 </html>
