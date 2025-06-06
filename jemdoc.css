@@ -372,3 +372,40 @@ table.imgtable, table.imgtable td {
     border: none;
     text-align: left;
 }
+/* Custom styles moved from index.html */
+.fancybox__container {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.fancybox__content {
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 800px;
+  box-shadow: 0 30px 60px rgba(69, 67, 67, 0.6);
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.fancybox__content img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 200% !important; }
+  h2 { font-size: 135% !important; }
+  body { padding-left: 20px; padding-right: 20px; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 220% !important; }
+  h2 { font-size: 145% !important; }
+  div#toptitle h1 { font-size: 220% !important; }
+}
+
+.mt25 { margin-top: 25px; }
+.title-image { margin-bottom: -5px; }
+.text-red { color: red; }
+.mt3 { margin-top: 3px; }
