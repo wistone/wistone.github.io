@@ -8,6 +8,26 @@
 <meta name="description" content="Jianping Shi's home page">
 <link rel="stylesheet" href="jemdoc.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+<style>
+/* Customize Fancybox overlay to mimic Apple's floating panel */
+.fancybox__container {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.fancybox__content {
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 800px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.fancybox__content img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+</style>
 <title>Jianping Shi</title>
 <script type="text/javascript">
 
@@ -224,16 +244,10 @@ For the full publication, please refer to my <a href="https://scholar.google.com
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 <script>
   Fancybox.bind("[data-fancybox]", {
-    // 自定义选项
     loop: true,
-    buttons: [
-      "zoom",
-      "slideShow",
-      "fullScreen",
-      "close"
-    ],
-    animationEffect: "fade",
-    transitionEffect: "fade",
+    buttons: ["close"],
+    animationEffect: "zoom",
+    transitionEffect: "zoom",
     dragToClose: false,
     autoFocus: false,
     placeFocusBack: false,
