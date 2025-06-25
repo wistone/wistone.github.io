@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专业升级、节奏提速，迎接AI产品新挑战</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 60px 80px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            margin: 20px;
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide h1 {
+            font-size: 48px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide h2 {
+            font-size: 36px;
+            color: #34495e;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+            font-weight: 600;
+        }
+
+        .slide h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .slide p, .slide li {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .slide ul {
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .slide li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .slide li::before {
+            content: "▶";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: -25px;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .emphasis {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .success {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 5px solid #27ae60;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .metric-card h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .metric-card .value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(102, 126, 234, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn:disabled {
+            background: rgba(0,0,0,0.3);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .title-slide h1 {
+            font-size: 64px;
+            margin-bottom: 40px;
+            -webkit-text-fill-color: white;
+        }
+
+        .title-slide .subtitle {
+            font-size: 28px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .title-slide .team-info {
+            font-size: 22px;
+            opacity: 0.8;
+        }
+
+        .action-items {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .action-items h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .action-items ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .action-items li {
+            padding: 8px 0;
+            font-size: 18px;
+        }
+
+        .action-items li::before {
+            content: "✓";
+            color: #fff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">10</span>
+        </div>
+
+        <!-- Slide 1: 开场页 -->
+        <div class="slide active title-slide">
+            <h1>迎接AI产品新挑战</h1>
+            <div class="subtitle">—— 专业升级、节奏提速</div>
+            <div class="team-info">商汤智能应用部门 All Hands Meeting</div>
+            <div class="team-info" style="margin-top: 50px; font-size: 20px;">2025年6月</div>
+        </div>
+
+        <!-- Slide 2: 行业紧迫性和背景 -->
+        <div class="slide">
+            <h2>行业变革：机遇与挑战并存</h2>
+            
+            <div class="warning">
+                <h3>🚨 行业现状：变化速度前所未有</h3>
+                <ul>
+                    <li><span class="highlight">资本市场要求提升</span>：从追逐AI概念转向真正的<span class="highlight">用户增长与盈利能力</span>，AI公司需要快速验证产品价值形成用户增长</li>
+                    <li><span class="highlight">头部公司大规模调整</span>：OpenAI、Google、Meta等都在重新定义团队结构，AI六小龙也在持续调整团队方向</li>
+                    <li><span class="highlight">技术迭代加速</span>：海外GPT、Claude 4、Gemini 2.5持续发布，国内Doubao、Deepseek、Qwen等国产大模型也在快速追赶</li>
+                </ul>
+            </div>
+
+            <p class="emphasis">核心挑战：<span class="highlight">不主动适应变化，就会面临淘汰</span></p>
+            
+            <div class="success">
+                <h3>我们的机会窗口</h3>
+                <p>ToC AI应用正处于爆发前夜，谁能在产品定位、用户体验、技术深度、交付质量上领先一步，谁就能占据市场先机。</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: 我们团队的角色与挑战 -->
+        <div class="slide">
+            <h2>团队现状：从ToB到ToC的转型挑战</h2>
+            
+            <h3>🎯 我们的定位</h3>
+            <ul>
+                <li>商汤面向ToC用户的<span class="emphasis">创新产品研发团队</span></li>
+            </ul>
+
+            <div class="warning">
+                <h3>📊 坦诚面对现状</h3>
+                <ul>
+                    <li>团队成立8个月，咔皮记账DAU快速增长到10万，<span class="emphasis">技术专业度</span>需要持续提升</li>
+                    <li>产品节奏快，调整多，需要持续适应<span class="emphasis">灵活的产品迭代的节奏和压力</span></li>
+                    <li>团队原始背景不完全面向ToC，团队岗位结构不是最优，<span class="emphasis">整体基线需要拉升</span></li>
+                </ul>
+            </div>
+
+            <p class="emphasis">转型不是选择题，是<span class="highlight">生存必修课</span></p>
+        </div>
+
+        <!-- Slide 4: 能力基线与淘汰机制 -->
+        <div class="slide">
+            <h2>团队目标：行业第一梯队的技术团队</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>团队规模目标</h4>
+                    <div class="value">小团队，精英化</div>
+                    <p>沟通简单，配合默契</p>
+                </div>
+                <div class="metric-card">
+                    <h4>团队质量目标</h4>
+                    <div class="value">能力强，效率高</div>
+                    <p>持续引进高质量候选人</p>
+                </div>
+            </div>
+
+            <h3>💪 能力要求总览</h3>
+            <ul>
+                <li><span class="emphasis">适应创新产品节奏</span>：理解产品与用户需求，<span class="emphasis">快速响应变化</span>，具备<span class="emphasis">Product Engineer的思维</span>，能与各方清晰沟通，高效配合</li>
+                <li><span class="emphasis">技术能力扎实</span>：掌握ToC产品的软件开发核心技术栈，能够解决产品开发中的<span class="emphasis">关键技术问题</span>，<span class="emphasis">开发质量</span>有保障</li>
+                <li><span class="emphasis">拉满个人效率</span>：熟练使用<span class="emphasis">AI辅助开发工具</span>，目标开发效率达到行业第一梯队 (参考Cursor/Copilot使用率)</li>
+                <li><span class="emphasis">具备AI Sense</span>：对AI产品与技术发展的有敏感度，会<span class="emphasis">关注AI前沿信息</span>，有对<span class="emphasis">AI模型能力的理解</span></li>
+            </ul>
+
+            <div class="warning">
+                <h3>⚡ 明确的信号</h3>
+                <p><span class="highlight">主动变强，而不是被动出局</span>。能力提升是大家个人长期职业发展的必需条件。</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: 工作节奏与创新特性 -->
+        <div class="slide">
+            <h2>创新节奏：拥抱快速变化的新常态</h2>
+            
+            <h3>🚀 0-1产品开发的特点</h3>
+            <ul>
+                <li><span class="emphasis">需求灵活</span>：团队会快速验证产品假设，需求会根据用户和市场的反馈快速调整</li>
+                <li><span class="emphasis">迭代敏捷</span>：根据项目阶段设立敏捷的迭代目标，需要研发团队快速响应</li>
+                <li><span class="emphasis">灵活协作</span>：项目组归属可能快速变化，需要团队成员快速适应</li>
+            </ul>
+
+            <div class="success">
+                <h3>📈 近期实战案例</h3>
+                <p>过去3个月，团队经历了多次重大产品方向调整: <span class="emphasis">显演包</span>暂停维护，<span class="emphasis">Lumi</span>从0-1开发，
+                    <span class="emphasis">AI Town</span>方向尝试，<span class="emphasis">4o辅助拍照</span>尝试，
+                    <span class="emphasis">咔皮记账</span>DAU突破10万大关，<span class="emphasis">咔皮Action</span>重新梳理产品目标。
+                    <b>变化是常态</b>，<span class="highlight">适应变化的能力决定个人价值</span></p>
+            </div>
+
+
+            <h3>🎯 适应策略</h3>
+            <ul>
+                <li>提升沟通效率，减少信息传递损耗，具备<span class="emphasis">Product Engineer的思维</span>，理解"为什么要做这个功能"，保持思考</li>
+                <li>保持学习心态，拓展视野，夯实基本功，<span class="emphasis">多用各类AI模型工具，提升单个任务的开发效率</span></li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: 产品交付质量标准 -->
+        <div class="slide">
+            <h2>质量标准：10万DAU的专业要求</h2>
+            
+            <h3>📊 核心质量指标</h3>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>服务端可用性</h4>
+                    <div class="value">99.9%</div>
+                    <p>Availability目标</p>
+                </div>
+                <div class="metric-card">
+                    <h4>平均修复时长</h4>
+                    <div class="value">&lt;30min</div>
+                    <p>MTTR目标</p>
+                </div>
+                <div class="metric-card">
+                    <h4>iOS Crash率</h4>
+                    <div class="value">&lt;10次</div>
+                    <p>iOS稳定性目标</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Android Crash、ANR率</h4>
+                    <div class="value">&lt;10次</div>
+                    <p>Android稳定性目标</p>
+                </div>
+            </div>
+
+            <div class="warning">
+                <h3>🔍 个人参考指标</h4>
+                <ul>
+                    <li><span class="highlight">Bug率统计</span>：个人Bug数量/需求工时</li>
+                    <li><span class="highlight">修复效率</span>：从发现到修复的平均时长</li>
+                </ul>
+            </div>
+
+            <p class="emphasis">质量不是口号，是<span class="highlight">可量化的专业标准</span></p>
+        </div>
+
+        <!-- Slide 7: 提升效率与工具意识 -->
+        <div class="slide">
+            <h2>效率提升：工具和方法论的力量</h2>
+            
+            <h3>⚡ 效率关键维度</h3>
+            <ul>
+                <li><span class="emphasis">需求交付周期</span>：从接收到完成的端到端时间，AI辅助开发工具的熟练程度</li>
+                <li><span class="emphasis">技术能力积累</span>：复用性解决方案的积累</li>
+                <li><span class="emphasis">团队协作效率</span>：准确理解需求，及时反馈进度，团队成员配合默契</li>
+            </ul>
+
+            <div class="success">
+                <h3>🛠️ 必备工具栈</h4>
+                <ul>
+                    <li><span class="highlight">AI Coding工具</span>：Github Copilot/Cursor，团队账号已开通</li>
+                    <li><span class="highlight">自动化测试</span>：提升代码质量和发布信心</li>
+                    <li><span class="highlight">性能监控</span>：实时掌握应用运行状态</li>
+                </ul>
+            </div>
+
+            <h3>📢 分享文化建设</h4>
+            <ul>
+                <li><span class="highlight">每周技术分享会</span>：工具使用心得、效率优化经验</li>
+                <li><span class="highlight">最佳实践文档</span>：将个人经验转化为团队资产</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: AI Sense的重要性 -->
+        <div class="slide">
+            <h2>AI Sense：核心竞争力的基石</h2>
+            
+            <div class="warning">
+                <h3>🤖 为什么AI Sense至关重要？</h4>
+                <ul>
+                    <li>我们是<span class="highlight">AI公司</span>，对前沿技术的敏感度是基本素养</li>
+                    <li>AI能力边界的快速扩展，直接影响产品规划和技术选型</li>
+                </ul>
+            </div>
+
+            <h3>🎯 具体行动要求</h3>
+            <ul>
+                <li><span class="emphasis">日常使用</span>：AI工具融入工作和生活的各个场景</li>
+                <li><span class="emphasis">技术跟踪</span>：关注最新模型发布和能力更新</li>
+                <li><span class="emphasis">应用探索</span>：主动尝试新的AI功能和使用场景</li>
+                <li><span class="emphasis">经验分享</span>：将使用心得分享给团队</li>
+            </ul>
+
+            <div class="success">
+                <h3>💡 实际应用场景</h4>
+                <p>不仅仅是coding助手，更要是可以探索产品设计灵感、用户研究分析、市场趋势判断、技术方案评估等多维度的AI应用。</p>
+                <p class="emphasis">AI不是噱头，是<span class="highlight">生存工具和核心竞争力</span></p>
+            </div>
+
+        </div>
+
+        <!-- Slide 9: 职业成长路径 
+        <div class="slide">
+            <h2>职业成长：这里是你快速上升的关键阶段</h2>
+            
+            <h3>🚀 成长路径规划</h3>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>技能提升期</h4>
+                    <div class="value">0-6月</div>
+                    <p>掌握核心技能栈</p>
+                </div>
+                <div class="metric-card">
+                    <h4>责任承担期</h4>
+                    <div class="value">6-12月</div>
+                    <p>独当一面的能力</p>
+                </div>
+            </div>
+
+            <h3>📈 具体成长维度</h3>
+            <ul>
+                <li><span class="emphasis">专业技能</span>：从ToB到ToC的技术栈熟练度</li>
+                <li><span class="emphasis">项目责任</span>：从执行者到方案设计者的转变</li>
+                <li><span class="emphasis">团队影响</span>：技术分享、新人培养、文化建设</li>
+                <li><span class="emphasis">行业认知</span>：对AI产品发展趋势的深度理解</li>
+            </ul>
+
+            <div class="success">
+                <h4>🎯 预期收益</h4>
+                <ul>
+                    <li><span class="highlight">团队内部晋升</span>：技术负责人、产品负责人机会</li>
+                    <li><span class="highlight">行业竞争力</span>：成为被抢着要的AI产品开发人才</li>
+                    <li><span class="highlight">技能溢价</span>：ToC AI应用开发的稀缺性价值</li>
+                </ul>
+            </div>
+
+            <p class="emphasis">在这里的每一天，都应该是<span class="highlight">快速迭代成长的一天</span></p>
+        </div>-->
+
+        <!-- Slide 10: 总结与行动号召 -->
+        <div class="slide">
+            <h2>立即行动：从今天开始改变</h2>
+            <!--
+            <div class="action-items">
+                <h4>🎯 核心关键词</h4>
+                <ul>
+                    <li><span class="highlight">紧迫性</span> - 行业变化不等人</li>
+                    <li><span class="highlight">专业度</span> - 质量标准不妥协</li>
+                    <li><span class="highlight">主动学习</span> - 持续迭代不停歇</li>
+                    <li><span class="highlight">积极适应</span> - 拥抱变化不抱怨</li>
+                </ul>
+            </div>
+
+            <h3>📅 近期具体行动</h3>
+            <ul>
+                <li><span class="emphasis">下周三</span>：AI工具使用经验分享会</li>
+                <li><span class="emphasis">月底前</span>：首次质量指标公布和排名</li>
+                <li><span class="emphasis">持续进行</span>：技术学习Workshop每周举行</li>
+            </ul>
+            -->
+            <div class="warning">
+                <h3>💪 最后的话</h4>
+                <p>每个人都必须<span class="highlight">主动适应变化</span>，不等待被动的指示。我们正处在AI产品爆发的关键时刻，这个团队是大家职业生涯快速成长的黄金机会。</p>
+                <p class="emphasis">让我们一起，在变化中成长，在挑战中突破！</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← 上一页</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">下一页 →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (n >= totalSlides) currentSlide = 0;
+            if (n < 0) currentSlide = totalSlides - 1;
+            
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

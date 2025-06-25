@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重新定义工程师：从代码执行者到价值创造者</title>
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --text-color: #e6e6e6;
+            --accent-color: #00b8ff;
+            --secondary-color: #ff3860;
+            --tertiary-color: #16c79a;
+            --slide-bg: #131926;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'SF Pro Display', 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .presentation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            min-height: 600px;
+            margin: 20px 0;
+            padding: 30px;
+            background-color: var(--slide-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-color), var(--tertiary-color));
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--accent-color), var(--tertiary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+        
+        li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .warning {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .success {
+            color: var(--tertiary-color);
+            font-weight: bold;
+        }
+        
+        .example {
+            background-color: rgba(0, 184, 255, 0.1);
+            border-left: 3px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            background-color: rgba(0, 184, 255, 0.1);
+            color: var(--accent-color);
+        }
+        
+        .quote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: '"';
+            font-size: 60px;
+            color: rgba(0, 184, 255, 0.2);
+            position: absolute;
+            top: -10px;
+            left: 5px;
+        }
+        
+        .animation-container {
+            width: 100%;
+            height: 300px;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ai-code {
+            position: absolute;
+            font-family: monospace;
+            color: var(--tertiary-color);
+            font-size: 16px;
+            opacity: 0;
+            animation: typeCode 10s infinite;
+        }
+        
+        @keyframes typeCode {
+            0% { opacity: 0; transform: translateY(20px); }
+            5% { opacity: 1; transform: translateY(0); }
+            95% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        
+        .final-message {
+            font-size: 32px;
+            text-align: center;
+            font-weight: bold;
+            line-height: 1.4;
+            margin: 40px 0;
+        }
+        
+        .cta {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent-color), var(--tertiary-color));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 184, 255, 0.4);
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: 开场 -->
+        <div class="slide" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <h1 style="font-size: 60px; margin-bottom: 30px;">重新定义工程师</h1>
+            <div class="subtitle" style="font-size: 30px; max-width: 800px;">从代码执行者到价值创造者</div>
+            <div class="slide-number">1</div>
+        </div>
+        
+        <!-- Slide 2: 我们为什么今天要聊这个？ -->
+        <div class="slide">
+            <h2>我们为什么今天要聊这个？</h2>
+            <div class="content">
+                <ul>
+                    <li>AI编程已经<span class="warning">不是未来</span>，而是<span class="highlight">正在发生</span></li>
+                    <li>工程师这个角色，正被<span class="highlight">重新定义</span></li>
+                    <li>如果你还在"按部就班地写代码"，可能已经<span class="warning">落后了</span></li>
+                </ul>
+                
+                <div class="example">
+                    <p><strong>真实例子1：</strong> <span class="highlight">Andrej Karpathy</span>提出"Vibe Coding"概念，1小时不到开发出完整iOS App</p>
+                </div>
+                
+                <div class="example">
+                    <p><strong>真实例子2：</strong> 小红书开发者用<span class="highlight">Claude + Cursor</span>，<strong>两步生成一个可用App原型</strong>，几乎没写一行代码</p>
+                </div>
+                
+                <div class="quote">
+                    还记得我们为了一个功能通宵写代码的日子吗？现在人家一个prompt就搞定了。
+                </div>
+                
+                <p class="highlight">你准备好和AI协作了吗？还是等着被AI取代？</p>
+            </div>
+            <div class="slide-number">2</div>
+        </div>
+        
+        <!-- Slide 3: 正在消失的护城河 -->
+        <div class="slide">
+            <h2>正在消失的护城河</h2>
+            <div class="content">
+                <ul>
+                    <li>技术门槛正在<span class="warning">下降</span>：GPT、Copilot、Cursor、Claude...</li>
+                    <li>CRUD、UI搭建、组件复用这些事，<span class="highlight">AI做得比你快</span></li>
+                </ul>
+                
+                <div class="animation-container" style="display: flex; flex-direction: column; justify-content: space-around; padding: 20px; height: 350px;">
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent-color); font-family: monospace; color: var(--tertiary-color);">
+                        <div>> AI: 生成一个用户管理页面</div>
+                        <div>> 正在思考最佳实现方案...</div>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent-color); font-family: monospace; color: var(--tertiary-color);">
+                        <div>// 自动生成的代码</div>
+                        <div>function UserList() {</div>
+                        <div>&nbsp;&nbsp;const [users, setUsers] = useState([]);</div>
+                        <div>&nbsp;&nbsp;// 数据获取逻辑</div>
+                        <div>}</div>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid var(--secondary-color); font-family: monospace; color: var(--tertiary-color);">
+                        <div>// 完整CRUD页面生成完毕</div>
+                        <div>// 总用时: 12秒</div>
+                        <div>// 人工编写估计时间: 4小时</div>
+                    </div>
+                </div>
+                
+                <div class="quote">
+                    我们过去引以为傲的技能，现在正在成为最容易被<span class="warning">自动化</span>的部分。
+                </div>
+            </div>
+            <div class="slide-number">3</div>
+        </div>
+        
+        <!-- Slide 4: 什么是"Product Engineer"？ -->
+        <div class="slide">
+            <h2>那么，什么是"Product Engineer"？</h2>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">不仅能实现功能，更懂"为什么要做这个功能"</span></li>
+                    <li>是"能跟用户和业务说人话的工程师"</li>
+                    <li>懂技术 → 懂产品 → 懂用户 → 懂价值链</li>
+                </ul>
+                
+                <div class="final-message">
+                    Product Engineer = <span class="highlight">技术力</span> × <span class="success">产品洞察</span> × <span class="warning">快速试错</span>
+                </div>
+            </div>
+            <div class="slide-number">4</div>
+        </div>
+        
+        <!-- Slide 5: 为什么Product Engineer是未来趋势？ -->
+        <div class="slide">
+            <h2>为什么Product Engineer是未来趋势？</h2>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">产品需求变化快</span> → 谁理解得更深，谁能更快响应</li>
+                    <li><span class="highlight">AI工具强</span> → 谁能驾驭得更好，谁就能10x提升</li>
+                    <li><span class="highlight">组织扁平化</span> → 谁能横跨多个角色边界，谁就更不可替代</li>
+                </ul>
+                
+                <div class="example">
+                    <p><strong>场景演示：</strong></p>
+                    <p><span class="warning">产品经理：</span> "我们需要这个新功能，两周能做完吗？"</p>
+                    <p><span class="accent-color">传统工程师：</span> "不行，至少需要一个月。"</p>
+                    <p><span class="success">Product Engineer：</span> "让我们做个原型测一下，看看用户真正需要什么，可能有更简单的解决方案。"</p>
+                </div>
+            </div>
+            <div class="slide-number">5</div>
+        </div>
+        
+        <!-- Slide 6: 未来工程师的新能力模型 -->
+        <div class="slide">
+            <h2>未来工程师的新能力模型</h2>
+            <div class="content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>传统能力</th>
+                            <th>新核心能力</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>写代码</td>
+                            <td><span class="highlight">定义问题</span> + 拆解任务</td>
+                        </tr>
+                        <tr>
+                            <td>技术优化</td>
+                            <td><span class="highlight">产品敏锐</span> + 用户视角</td>
+                        </tr>
+                        <tr>
+                            <td>熟悉语言/框架</td>
+                            <td><span class="highlight">熟练使用AI工具</span></td>
+                        </tr>
+                        <tr>
+                            <td>协作交付功能</td>
+                            <td><span class="highlight">快速原型</span> + 数据验证闭环</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="quote">
+                    你问GPT怎么实现某功能，它确实写得出来，但你得知道<span class="highlight">到底要不要做这个功能</span>，怎么拆成AI能接得住的任务。
+                </div>
+            </div>
+            <div class="slide-number">6</div>
+        </div>
+        
+        <!-- Slide 7: 我们会在哪些任务中强烈感受到这种能力差异？ -->
+        <div class="slide">
+            <h2>我们会在哪些任务中强烈感受到这种能力差异？</h2>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">设计复杂新功能</span> → 是"能不能做"，更是"值不值得做"</li>
+                    <li><span class="highlight">A/B测试</span> → 工程师能否主动提方案、看懂数据</li>
+                    <li><span class="highlight">AI产品开发</span> → 谁能最快整合API、做出Demo</li>
+                    <li><span class="highlight">需求模糊/变化快</span> → 谁能快速试错出原型</li>
+                </ul>
+                
+                <div class="quote">
+                    现在最吃香的，不是'写代码特别快的人'，而是'能一个下午做出产品雏形的人'。
+                </div>
+            </div>
+            <div class="slide-number">7</div>
+        </div>
+        
+        <!-- Slide 8: 怎么培养Product Engineer思维？ -->
+        <div class="slide">
+            <h2>怎么培养Product Engineer思维？</h2>
+            <div class="content">
+                <ul>
+                    <li><span class="highlight">技术要扎实</span>：能落地是第一步</li>
+                    <li>从每一个功能去<span class="highlight">追问"为什么"</span></li>
+                    <li>每一行代码都带着<span class="highlight">用户的视角</span>去写</li>
+                    <li>尝试：<span class="highlight">自己写一个小功能并做出分析闭环</span></li>
+                </ul>
+                
+                <div class="quote">
+                    你也可以是产品团队最懂技术的，也可以是技术团队最懂产品的。
+                </div>
+            </div>
+            <div class="slide-number">8</div>
+        </div>
+        
+        <!-- Slide 9: 如何衡量一个工程师的价值 -->
+        <div class="slide">
+            <h2>如何衡量一个工程师的价值（尤其是AI时代）？</h2>
+            <div class="content">
+                <p><span class="highlight">从产出导向转为价值导向：</span></p>
+                <ul>
+                    <li>能否<span class="highlight">清晰定义问题</span></li>
+                    <li>能否<span class="highlight">驾驭AI节省时间</span></li>
+                    <li>能否<span class="highlight">快速验证思路</span></li>
+                    <li>能否<span class="highlight">提出新想法而非只执行任务</span></li>
+                </ul>
+                
+                <div class="quote">
+                    别再以代码行数自豪了，我们现在更看重的是'谁能用一周产出一个测试able的产品'。
+                </div>
+            </div>
+            <div class="slide-number">9</div>
+        </div>
+        
+        <!-- Slide 10: 作为一个团队，我们需要什么样的文化？ -->
+        <div class="slide">
+            <h2>作为一个团队，我们需要什么样的文化？</h2>
+            <div class="content">
+                <ul>
+                    <li>不追求完美，但追求<span class="highlight">速度 + 学习反馈</span></li>
+                    <li>技术决策为<span class="highlight">"产品服务"</span>而不是"炫技"</li>
+                    <li>鼓励<span class="highlight">主动提问、试错、做原型</span></li>
+                    <li>团队之间不设边界，而是<span class="highlight">一起对齐目标</span></li>
+                </ul>
+                
+                <div class="quote">
+                    我们是产品的合伙人，不是产品的打工人。
+                </div>
+            </div>
+            <div class="slide-number">10</div>
+        </div>
+        
+        <!-- Slide 11: 收尾 -->
+        <div class="slide" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 600px;">
+            <h2 style="margin-bottom: 60px;">收尾：一句话带走这个共识</h2>
+            <div class="content" style="width: 100%;">
+                <div class="final-message" style="font-size: 42px; padding: 40px; background: rgba(0,0,0,0.2); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    未来最厉害的工程师，是能用<span class="highlight">技术</span>推动<span class="success">价值</span>的人。
+                </div>
+            </div>
+            <div class="slide-number">11</div>
+        </div>
+    </div>
+</body>
+</html>
