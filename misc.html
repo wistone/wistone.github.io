@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="石建萍, 兴趣爱好, 心理咨询, 团队管理">
+    <meta name="description" content="石建萍的个人兴趣爱好展示">
+    <link rel="stylesheet" href="jemdoc.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+    <title>兴趣爱好 - 石建萍</title>
+    <style>
+        .hobby-section {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #527bbd;
+        }
+        
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .certificate-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        .certificate-title {
+            color: #527bbd;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .certificate-description {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .certificate-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #527bbd;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+        
+        .certificate-link:hover {
+            background: #224b8d;
+            color: white;
+            border-bottom: none;
+        }
+        
+        .allhands-section {
+            margin: 30px 0;
+        }
+        
+        .allhands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .allhands-button {
+            display: block;
+            padding: 20px;
+            background: linear-gradient(135deg, #527bbd, #224b8d);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(82, 123, 189, 0.3);
+        }
+        
+        .allhands-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(82, 123, 189, 0.4);
+            color: white;
+            border-bottom: none;
+        }
+        
+        .allhands-date {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .section-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #527bbd;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        
+        .back-link:hover {
+            border-bottom: 1px dotted #527bbd;
+        }
+        
+        @media (max-width: 768px) {
+            .certificate-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .allhands-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hobby-section {
+                padding: 20px;
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="layout-content" class="mt25">
+    <a href="index.html" class="back-link">← 返回主页</a>
+    
+    <div id="toptitle">
+        <h1>🌟 Something Interesting</h1>
+    </div>
+    
+    <p style="font-size: 1.1em; color: #666; margin-bottom: 30px;">
+        除了专业的技术研究和产品开发工作，我兴趣非常广泛。这里会记录我的专业以外的兴趣爱好，和近期工作中一些有意思的事情。
+    </p>
+
+    <!-- 心理咨询相关爱好 -->
+    <div class="hobby-section">
+        <h2><span class="section-icon">🧠</span>心理咨询与成长</h2>
+        <p style="color: #555; margin-bottom: 20px;">
+            在我生娃前后，怀着对新生命的期待和好奇，我接触了简单心理的心理咨询相关课程。我相信理解人的内心世界和行为模式，能让我更好的理解自己和周围的人，
+            不仅能帮助到养育一个孩子健康成长，也能让我自己的生活更自信与从容。
+        </p>
+        
+        <div class="certificate-grid">
+            <div class="certificate-card">
+                <div class="certificate-title">简单心理 Uni Seed 理论课程</div>
+                <div class="certificate-description">
+                    完成了系统的心理学理论学习，为我提供了扎实的心理学理论基础，帮助我更好地理解人的心理机制和行为模式。
+                </div>
+                <a href="images/jdxl-course.jpg" data-fancybox="psychology" 
+                   data-caption="简单心理Uni Seed课程证书" class="certificate-link">
+                    查看证书
+                </a>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="certificate-title">简单心理热线实习</div>
+                <div class="certificate-description">
+                    参与了简单心理的热线咨询实习项目，在专业督导下为求助者提供心理支持。
+                    这段实习经历让我深刻体会到倾听的力量，也提升了我的共情能力和沟通技巧。
+                </div>
+                <a href="images/jdxl-hotline.jpg" data-fancybox="psychology" 
+                   data-caption="简单心理热线实习证书" class="certificate-link">
+                    查看证书
+                </a>
+            </div>
+        </div>
+        <!--
+        <p style="color: #555; margin-top: 20px; font-style: italic;">
+            💡 这些心理学相关的学习和实践，不仅丰富了我的个人成长，也为我在技术团队管理中带来了不一样的视角。
+            我发现技术领导者如果能更好地理解团队成员的心理需求，就能创造更有活力和创造力的工作环境。
+        </p>
+        -->
+    </div>
+
+    <!-- 团队与工作相关 -->
+    <div class="hobby-section">
+        <h2><span class="section-icon">👥</span>构建AI Native的技术团队</h2>
+        <p style="color: #555; margin-bottom: 20px;">
+            近期我加入了公司ToC应用的团队，目标打造行业第一梯队的AI Native的技术团队，做出有影响力的AI产品。
+        </p>
+        <p style="color: #555; margin-bottom: 20px;">
+            我们会定期组织团队分享会（All Hands），营造开放、学习型的团队氛围。
+            这其中也包含了我对AI变革下技术团队应该怎样自我革新的思考。
+        </p>
+        
+        <div class="allhands-section">
+            <h3 style="color: #527bbd; margin-bottom: 15px;">📅 团队All Hands分享会</h3>
+            
+            <div class="allhands-grid">
+                <a href="25.3.28-allhands.html" class="allhands-button">
+                    🚀 2025年3月团队分享会  
+                    <div class="allhands-date">2025.03.28</div>
+                </a>
+
+                <a href="25.6.25-allhands.html" class="allhands-button">
+                    📊 2025年6月团队分享会
+                    <div class="allhands-date">2025.06.25</div>
+                </a>                
+            </div>
+        </div>
+        <!--
+        <p style="color: #555; margin-top: 20px; font-style: italic;">
+            💡 通过这些团队活动，我希望能够传承和发扬优秀的团队文化，
+            让每个人都能在这个平台上实现个人价值，同时为团队和公司的发展贡献力量。
+        </p>
+        -->
+    </div>
+
+    <!-- 总结 -->
+    <!--
+    <div style="margin: 40px 0; padding: 20px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 8px;">
+        <h3 style="color: #527bbd; margin-bottom: 15px;">🌈 兴趣与工作的融合</h3>
+        <p style="color: #555; line-height: 1.6;">
+            我相信多元化的兴趣爱好能够相互促进，形成良性循环。心理学的学习让我更好地理解团队成员，
+            团队管理的实践又为我提供了应用心理学知识的场景。这种跨领域的融合思维，
+            也体现在我的技术工作中——用更人性化的方式思考产品设计，用更科学的方法进行团队协作。
+        </p>
+    </div>
+    -->
+    <div id="footer">
+        <div id="footer-text">
+            <p style="text-align: center; color: #888;">
+                "技术改变世界，但理解人心让技术更有温度。" 
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script src="main.js"></script>
+<script>
+    // 初始化 Fancybox
+    Fancybox.bind("[data-fancybox]", {
+        // 配置选项
+    });
+</script>
+
+</body>
+</html> 
