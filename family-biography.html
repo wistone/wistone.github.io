@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父親母親一大家</title>
+    <script src="chapters-data.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'KaiTi', '楷体', '仿宋', serif;
+            background: linear-gradient(45deg, #f4f1e8 0%, #e8dcc0 100%);
+            color: #2c2c2c;
+            line-height: 1.8;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 3px solid #8b7355;
+        }
+
+        .sidebar h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-item {
+            margin-bottom: 8px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px 15px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+        }
+
+        /* 右侧主内容区 */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 标题栏 */
+        .header {
+            background: linear-gradient(90deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #654321;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 内容区 */
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><defs><pattern id="lines" x="0" y="0" width="100" height="30" patternUnits="userSpaceOnUse"><line x1="0" y1="30" x2="100" y2="30" stroke="%23d4af37" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100%" height="100%" fill="url(%23lines)"/></svg>'), 
+                        linear-gradient(0deg, rgba(244, 241, 232, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+        }
+
+        .content-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d4af37;
+        }
+
+        .chapter-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .chapter-content {
+            font-size: 16px;
+            text-indent: 2em;
+            line-height: 2;
+            color: #2c2c2c;
+        }
+
+        .chapter-content p {
+            margin-bottom: 20px;
+        }
+
+        /* 字体控制面板 */
+        .font-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid #d4af37;
+            z-index: 1000;
+        }
+
+        .font-controls h3 {
+            margin-bottom: 10px;
+            color: #8b4513;
+            font-size: 14px;
+        }
+
+        .font-selector {
+            margin-bottom: 10px;
+        }
+
+        .font-selector select {
+            padding: 5px;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .size-controls {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .size-btn {
+            padding: 5px 10px;
+            border: 1px solid #d4af37;
+            background: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .size-btn:hover {
+            background: #d4af37;
+            color: #fff;
+        }
+
+        /* 字体类 */
+        .font-kaiti { font-family: 'KaiTi', '楷体', serif; }
+        .font-lishu { font-family: 'LiSu', '隶书', serif; }
+        .font-songti { font-family: 'SimSun', '宋体', serif; }
+        .font-fangsong { font-family: 'FangSong', '仿宋', serif; }
+        .font-mingti { font-family: 'Microsoft YaHei', '微软雅黑', sans-serif; }
+        .font-xinwei { font-family: 'STXinwei', '华文新魏', serif; }
+
+        .hidden { display: none; }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                order: 2;
+            }
+
+            .main-content {
+                order: 1;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .content-inner {
+                padding: 20px;
+            }
+
+            .font-controls {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8941f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+            <h2>目录</h2>
+            <div class="nav-item">
+                <a href="#" class="nav-link active" onclick="showChapter('chapter1')">序言</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter2')">一.记忆中的爷爷奶奶</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter3')">二.父亲的童年</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter4')">三.父亲的婚姻</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter5')">四.岳父门上安家</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter6')">五.白手起家的父亲</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter7')">六.母亲的娘家</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter8')">七.外住户的悲惨</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter9')">八.定居下阳阁村</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter10')">九.乐善好施的母亲</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter11')">十.多灾多难的父亲</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter12')">十一.兴旺的门庭</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" onclick="showChapter('chapter13')">后记</a>
+            </div>
+        </div>
+
+        <!-- 右侧主内容区 -->
+        <div class="main-content">
+            <!-- 标题栏 -->
+            <div class="header">
+                <h1>父親母親一大家</h1>
+            </div>
+
+            <!-- 字体控制面板 -->
+            <div class="font-controls">
+                <h3>字体设置</h3>
+                <div class="font-selector">
+                    <select id="fontSelect" onchange="changeFont()">
+                        <option value="font-kaiti">楷体（推荐）</option>
+                        <option value="font-lishu">隶书</option>
+                        <option value="font-songti">宋体</option>
+                        <option value="font-fangsong">仿宋</option>
+                        <option value="font-mingti">雅黑</option>
+                        <option value="font-xinwei">华文新魏</option>
+                    </select>
+                </div>
+                <div class="size-controls">
+                    <button class="size-btn" onclick="changeFontSize(-1)">A-</button>
+                    <span id="currentSize">16px</span>
+                    <button class="size-btn" onclick="changeFontSize(1)">A+</button>
+                </div>
+            </div>
+
+            <!-- 内容区 -->
+            <div class="content">
+                <div class="content-inner" id="contentArea">
+                    <div id="chapters-container">
+                        <!-- 章节内容将由JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentFontSize = 16;
+        let currentFont = 'font-kaiti';
+        let currentChapter = 'chapter1';
+
+
+
+        // 显示章节
+        function showChapter(chapterId) {
+            currentChapter = chapterId;
+            const container = document.getElementById('chapters-container');
+            const chapter = chaptersData[chapterId];
+            
+            if (chapter) {
+                // 将内容按换行符分割成段落
+                const paragraphs = chapter.content.split('\n\n').filter(p => p.trim());
+                const paragraphsHtml = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+                
+                container.innerHTML = `
+                    <h2 class="chapter-title">${chapter.title}</h2>
+                    <div class="chapter-content">
+                        ${paragraphsHtml}
+                    </div>
+                `;
+            }
+
+            // 更新导航栏状态
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // 滚动到顶部
+            document.querySelector('.content').scrollTop = 0;
+        }
+
+        // 更改字体
+        function changeFont() {
+            const fontSelect = document.getElementById('fontSelect');
+            const contentArea = document.getElementById('contentArea');
+            
+            contentArea.classList.remove(currentFont);
+            currentFont = fontSelect.value;
+            contentArea.classList.add(currentFont);
+        }
+
+        // 更改字体大小
+        function changeFontSize(delta) {
+            const contentArea = document.getElementById('contentArea');
+            const currentSizeSpan = document.getElementById('currentSize');
+            
+            currentFontSize += delta;
+            if (currentFontSize < 12) currentFontSize = 12;
+            if (currentFontSize > 24) currentFontSize = 24;
+            
+            contentArea.style.fontSize = currentFontSize + 'px';
+            currentSizeSpan.textContent = currentFontSize + 'px';
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            changeFont();
+            showChapter('chapter1');
+            document.getElementById('currentSize').textContent = currentFontSize + 'px';
+        });
+
+        // 键盘快捷键支持
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey) {
+                if (event.key === '=' || event.key === '+') {
+                    event.preventDefault();
+                    changeFontSize(1);
+                } else if (event.key === '-') {
+                    event.preventDefault();
+                    changeFontSize(-1);
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
