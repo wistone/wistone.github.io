@@ -13,9 +13,9 @@
         }
 
         body {
-            font-family: 'KaiTi', '楷体', '仿宋', serif;
-            background: linear-gradient(45deg, #f4f1e8 0%, #e8dcc0 100%);
-            color: #2c2c2c;
+            font-family: 'KaiTi', '楷体', serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 30%, #dee2e6 100%);
+            color: #2c3e50;
             line-height: 1.8;
         }
 
@@ -24,17 +24,17 @@
             height: 100vh;
             max-width: 1400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 30px rgba(52, 73, 94, 0.15);
         }
 
         /* 左侧导航栏 */
         .sidebar {
             width: 280px;
-            background: linear-gradient(180deg, #d4af37 0%, #b8941f 100%);
+            background: linear-gradient(180deg, #607d8b 0%, #455a64 100%);
             padding: 20px;
             overflow-y: auto;
-            border-right: 3px solid #8b7355;
+            border-right: 3px solid #37474f;
         }
 
         .sidebar h2 {
@@ -75,17 +75,20 @@
 
         /* 标题栏 */
         .header {
-            background: linear-gradient(90deg, #8b4513 0%, #a0522d 50%, #8b4513 100%);
-            color: #fff;
-            padding: 20px;
+            background: linear-gradient(90deg, #34495e 0%, #2c3e50 50%, #34495e 100%);
+            color: #ecf0f1;
+            padding: 12px 20px;
             text-align: center;
-            border-bottom: 3px solid #654321;
+            border-bottom: 3px solid #2c3e50;
+            line-height: 1.2;
         }
 
         .header h1 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 0;
+            letter-spacing: 2px;
         }
 
         /* 内容区 */
@@ -93,27 +96,27 @@
             flex: 1;
             padding: 40px;
             overflow-y: auto;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><defs><pattern id="lines" x="0" y="0" width="100" height="30" patternUnits="userSpaceOnUse"><line x1="0" y1="30" x2="100" y2="30" stroke="%23d4af37" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100%" height="100%" fill="url(%23lines)"/></svg>'), 
-                        linear-gradient(0deg, rgba(244, 241, 232, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><defs><pattern id="lines" x="0" y="0" width="100" height="30" patternUnits="userSpaceOnUse"><line x1="0" y1="30" x2="100" y2="30" stroke="%2378909c" stroke-width="0.5" opacity="0.2"/></pattern></defs><rect width="100%" height="100%" fill="url(%23lines)"/></svg>'), 
+                        linear-gradient(0deg, rgba(236, 240, 241, 0.8) 0%, rgba(255, 255, 255, 0.95) 100%);
         }
 
         .content-inner {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid #d4af37;
+            box-shadow: 0 8px 25px rgba(52, 73, 94, 0.12);
+            border: 1px solid #b0bec5;
         }
 
         .chapter-title {
             font-size: 24px;
             font-weight: bold;
-            color: #8b4513;
+            color: #2c3e50;
             margin-bottom: 25px;
             text-align: center;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 2px solid #607d8b;
             padding-bottom: 10px;
         }
 
@@ -128,64 +131,16 @@
             margin-bottom: 20px;
         }
 
-        /* 字体控制面板 */
-        .font-controls {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid #d4af37;
-            z-index: 1000;
+        .chapter-section {
+            margin-bottom: 40px;
+            scroll-margin-top: 20px;
         }
 
-        .font-controls h3 {
-            margin-bottom: 10px;
-            color: #8b4513;
-            font-size: 14px;
+        .chapter-section:last-child {
+            margin-bottom: 0;
         }
 
-        .font-selector {
-            margin-bottom: 10px;
-        }
 
-        .font-selector select {
-            padding: 5px;
-            border: 1px solid #d4af37;
-            border-radius: 5px;
-            font-size: 12px;
-        }
-
-        .size-controls {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
-
-        .size-btn {
-            padding: 5px 10px;
-            border: 1px solid #d4af37;
-            background: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .size-btn:hover {
-            background: #d4af37;
-            color: #fff;
-        }
-
-        /* 字体类 */
-        .font-kaiti { font-family: 'KaiTi', '楷体', serif; }
-        .font-lishu { font-family: 'LiSu', '隶书', serif; }
-        .font-songti { font-family: 'SimSun', '宋体', serif; }
-        .font-fangsong { font-family: 'FangSong', '仿宋', serif; }
-        .font-mingti { font-family: 'Microsoft YaHei', '微软雅黑', sans-serif; }
-        .font-xinwei { font-family: 'STXinwei', '华文新魏', serif; }
 
         .hidden { display: none; }
 
@@ -214,12 +169,7 @@
                 padding: 20px;
             }
 
-            .font-controls {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin-bottom: 20px;
-            }
+
         }
 
         ::-webkit-scrollbar {
@@ -232,12 +182,12 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #d4af37;
+            background: #90a4ae;
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #b8941f;
+            background: #607d8b;
         }
     </style>
 </head>
@@ -294,25 +244,7 @@
                 <h1>父親母親一大家</h1>
             </div>
 
-            <!-- 字体控制面板 -->
-            <div class="font-controls">
-                <h3>字体设置</h3>
-                <div class="font-selector">
-                    <select id="fontSelect" onchange="changeFont()">
-                        <option value="font-kaiti">楷体（推荐）</option>
-                        <option value="font-lishu">隶书</option>
-                        <option value="font-songti">宋体</option>
-                        <option value="font-fangsong">仿宋</option>
-                        <option value="font-mingti">雅黑</option>
-                        <option value="font-xinwei">华文新魏</option>
-                    </select>
-                </div>
-                <div class="size-controls">
-                    <button class="size-btn" onclick="changeFontSize(-1)">A-</button>
-                    <span id="currentSize">16px</span>
-                    <button class="size-btn" onclick="changeFontSize(1)">A+</button>
-                </div>
-            </div>
+
 
             <!-- 内容区 -->
             <div class="content">
@@ -326,20 +258,42 @@
     </div>
 
     <script>
-        let currentFontSize = 16;
-        let currentFont = 'font-kaiti';
         let currentChapter = 'chapter1';
+        let allChapters = [];
 
 
 
-        // 显示章节
-        function showChapter(chapterId) {
-            currentChapter = chapterId;
+        // 加载所有章节内容到页面上（实现连续滚动）
+        function loadAllChapters() {
             const container = document.getElementById('chapters-container');
-            const chapter = chaptersData[chapterId];
+            let allContent = '';
             
+            allChapters.forEach((chapterId, index) => {
+                const chapter = chaptersData[chapterId];
+                if (chapter) {
+                    const paragraphs = chapter.content.split('\n\n').filter(p => p.trim());
+                    const paragraphsHtml = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+                    
+                    allContent += `
+                        <div class="chapter-section" id="${chapterId}-section" data-chapter="${chapterId}">
+                            <h2 class="chapter-title">${chapter.title}</h2>
+                            <div class="chapter-content">
+                                ${paragraphsHtml}
+                            </div>
+                            ${index < allChapters.length - 1 ? '<div style="height: 50px;"></div>' : ''}
+                        </div>
+                    `;
+                }
+            });
+            
+            container.innerHTML = allContent;
+        }
+
+        // 加载单个章节内容
+        function loadChapterContent() {
+            const chapter = chaptersData[currentChapter];
             if (chapter) {
-                // 将内容按换行符分割成段落
+                const container = document.getElementById('chapters-container');
                 const paragraphs = chapter.content.split('\n\n').filter(p => p.trim());
                 const paragraphsHtml = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
                 
@@ -350,6 +304,71 @@
                     </div>
                 `;
             }
+        }
+
+        // 切换到连续滚动模式
+        function enableContinuousScroll() {
+            loadAllChapters();
+            setupScrollListener();
+        }
+
+        // 设置滚动监听
+        function setupScrollListener() {
+            const contentArea = document.querySelector('.content');
+            const sections = document.querySelectorAll('.chapter-section');
+            
+            contentArea.addEventListener('scroll', function() {
+                let currentSection = null;
+                const scrollTop = contentArea.scrollTop + 100; // 偏移量用于更好的检测
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('data-chapter');
+                    }
+                });
+                
+                if (currentSection && currentSection !== currentChapter) {
+                    currentChapter = currentSection;
+                    // 更新导航栏激活状态
+                    updateActiveNavLink(currentChapter);
+                }
+            });
+        }
+
+        // 更新导航栏激活状态
+        function updateActiveNavLink(chapterId) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick').includes(chapterId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // 跳转到指定章节（在连续滚动模式下）
+        function scrollToChapter(chapterId) {
+            const section = document.getElementById(chapterId + '-section');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // 显示章节（支持连续滚动）
+        function showChapter(chapterId) {
+            currentChapter = chapterId;
+            
+            // 检查是否已经是连续滚动模式
+            if (document.querySelector('.chapter-section')) {
+                scrollToChapter(chapterId);
+            } else {
+                loadChapterContent();
+                // 滚动到顶部
+                document.querySelector('.content').scrollTop = 0;
+            }
 
             // 更新导航栏状态
             const navLinks = document.querySelectorAll('.nav-link');
@@ -357,50 +376,35 @@
                 link.classList.remove('active');
             });
             event.target.classList.add('active');
-
-            // 滚动到顶部
-            document.querySelector('.content').scrollTop = 0;
-        }
-
-        // 更改字体
-        function changeFont() {
-            const fontSelect = document.getElementById('fontSelect');
-            const contentArea = document.getElementById('contentArea');
-            
-            contentArea.classList.remove(currentFont);
-            currentFont = fontSelect.value;
-            contentArea.classList.add(currentFont);
-        }
-
-        // 更改字体大小
-        function changeFontSize(delta) {
-            const contentArea = document.getElementById('contentArea');
-            const currentSizeSpan = document.getElementById('currentSize');
-            
-            currentFontSize += delta;
-            if (currentFontSize < 12) currentFontSize = 12;
-            if (currentFontSize > 24) currentFontSize = 24;
-            
-            contentArea.style.fontSize = currentFontSize + 'px';
-            currentSizeSpan.textContent = currentFontSize + 'px';
         }
 
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
-            changeFont();
-            showChapter('chapter1');
-            document.getElementById('currentSize').textContent = currentFontSize + 'px';
+            // 初始化章节列表
+            allChapters = Object.keys(chaptersData);
+            
+            // 启用连续滚动模式
+            enableContinuousScroll();
+            
+            // 设置初始活跃章节
+            updateActiveNavLink('chapter1');
         });
 
-        // 键盘快捷键支持
+        // 键盘快捷键支持（章节导航）
         document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey) {
-                if (event.key === '=' || event.key === '+') {
-                    event.preventDefault();
-                    changeFontSize(1);
-                } else if (event.key === '-') {
-                    event.preventDefault();
-                    changeFontSize(-1);
+            const currentIndex = allChapters.indexOf(currentChapter);
+            
+            if (event.key === 'ArrowUp' && event.ctrlKey) {
+                event.preventDefault();
+                if (currentIndex > 0) {
+                    const prevChapter = allChapters[currentIndex - 1];
+                    scrollToChapter(prevChapter);
+                }
+            } else if (event.key === 'ArrowDown' && event.ctrlKey) {
+                event.preventDefault();
+                if (currentIndex < allChapters.length - 1) {
+                    const nextChapter = allChapters[currentIndex + 1];
+                    scrollToChapter(nextChapter);
                 }
             }
         });
