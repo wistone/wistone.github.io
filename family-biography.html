@@ -77,27 +77,28 @@
         .header {
             background: linear-gradient(90deg, #34495e 0%, #2c3e50 50%, #34495e 100%);
             color: #ecf0f1;
-            padding: 12px 20px;
+            padding: 25px 20px;
             text-align: center;
             border-bottom: 3px solid #2c3e50;
             line-height: 1.2;
         }
 
         .header h1 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin: 0;
+            margin: 5px 0 0 0;
             letter-spacing: 2px;
         }
 
         /* 内容区 */
         .content {
             flex: 1;
-            padding: 40px;
+            padding: 20px;
             overflow-y: auto;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><defs><pattern id="lines" x="0" y="0" width="100" height="30" patternUnits="userSpaceOnUse"><line x1="0" y1="30" x2="100" y2="30" stroke="%2378909c" stroke-width="0.5" opacity="0.2"/></pattern></defs><rect width="100%" height="100%" fill="url(%23lines)"/></svg>'), 
-                        linear-gradient(0deg, rgba(236, 240, 241, 0.8) 0%, rgba(255, 255, 255, 0.95) 100%);
+            background: linear-gradient(0deg, rgba(236, 240, 241, 0.8) 0%, rgba(255, 255, 255, 0.95) 100%);
+            background: radial-gradient(circle, rgba(120, 144, 156, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         .content-inner {
@@ -132,7 +133,7 @@
         }
 
         .chapter-section {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             scroll-margin-top: 20px;
         }
 
@@ -197,7 +198,7 @@
         <div class="sidebar">
             <h2>目录</h2>
             <div class="nav-item">
-                <a href="#" class="nav-link active" onclick="showChapter('chapter1')">序言</a>
+                <a href="#" class="nav-link" onclick="showChapter('chapter1')">序言</a>
             </div>
             <div class="nav-item">
                 <a href="#" class="nav-link" onclick="showChapter('chapter2')">一.记忆中的爷爷奶奶</a>
@@ -271,8 +272,13 @@
             allChapters.forEach((chapterId, index) => {
                 const chapter = chaptersData[chapterId];
                 if (chapter) {
+                    // 先按双换行分割，再按单换行分割并用<br>处理
                     const paragraphs = chapter.content.split('\n\n').filter(p => p.trim());
-                    const paragraphsHtml = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+                    const paragraphsHtml = paragraphs.map(p => {
+                        // 将段落内的单换行转换为<br>标签
+                        const processedP = p.trim().replace(/\n/g, '<br>');
+                        return `<p>${processedP}</p>`;
+                    }).join('');
                     
                     allContent += `
                         <div class="chapter-section" id="${chapterId}-section" data-chapter="${chapterId}">
@@ -280,7 +286,7 @@
                             <div class="chapter-content">
                                 ${paragraphsHtml}
                             </div>
-                            ${index < allChapters.length - 1 ? '<div style="height: 50px;"></div>' : ''}
+                            ${index < allChapters.length - 1 ? '<div style="height: 20px;"></div>' : ''}
                         </div>
                     `;
                 }
@@ -295,7 +301,10 @@
             if (chapter) {
                 const container = document.getElementById('chapters-container');
                 const paragraphs = chapter.content.split('\n\n').filter(p => p.trim());
-                const paragraphsHtml = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+                const paragraphsHtml = paragraphs.map(p => {
+                    const processedP = p.trim().replace(/\n/g, '<br>');
+                    return `<p>${processedP}</p>`;
+                }).join('');
                 
                 container.innerHTML = `
                     <h2 class="chapter-title">${chapter.title}</h2>
@@ -319,16 +328,27 @@
             
             contentArea.addEventListener('scroll', function() {
                 let currentSection = null;
-                const scrollTop = contentArea.scrollTop + 100; // 偏移量用于更好的检测
+                const scrollTop = contentArea.scrollTop + 200; // 提前切换时机
+                const contentHeight = contentArea.scrollHeight;
+                const viewportHeight = contentArea.clientHeight;
+                const scrollBottom = contentArea.scrollTop + viewportHeight;
                 
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    
-                    if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
-                        currentSection = section.getAttribute('data-chapter');
-                    }
-                });
+                // 特殊处理：如果滚动到底部附近，激活最后一个章节
+                if (scrollBottom >= contentHeight - 100) {
+                    const lastSection = sections[sections.length - 1];
+                    currentSection = lastSection.getAttribute('data-chapter');
+                } else {
+                    // 正常的章节检测逻辑
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        
+                        // 当滚动到章节开始位置前50px时就激活
+                        if (scrollTop >= sectionTop - 50 && scrollTop < sectionTop + sectionHeight) {
+                            currentSection = section.getAttribute('data-chapter');
+                        }
+                    });
+                }
                 
                 if (currentSection && currentSection !== currentChapter) {
                     currentChapter = currentSection;
@@ -343,7 +363,9 @@
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('onclick').includes(chapterId)) {
+                // 精确匹配章节ID，避免误匹配
+                const onclickAttr = link.getAttribute('onclick');
+                if (onclickAttr === `showChapter('${chapterId}')`) {
                     link.classList.add('active');
                 }
             });
@@ -386,7 +408,11 @@
             // 启用连续滚动模式
             enableContinuousScroll();
             
-            // 设置初始活跃章节
+            // 确保只有第一个章节是活跃状态
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // 设置初始活跃章节为序言
             updateActiveNavLink('chapter1');
         });
 
